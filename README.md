@@ -145,7 +145,7 @@ background:#0056b3;
 ```
 ## OUTPUT
 
-![Carousel Output](images/ImgCar.png)
+![Carousel Output](ImgCar.png)
 
 ## RESULT
 The program for creating Image Carousel using React is executed successfully.
