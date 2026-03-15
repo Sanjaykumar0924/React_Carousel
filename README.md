@@ -1,5 +1,5 @@
 # Ex05 Image Carousel
-## Date:
+## Date: 15.3.26
 
 ## AIM
 To create a Image Carousel using React 
@@ -39,10 +39,113 @@ Use setInterval to call the nextImage() function at regular intervals.
 Clean up the interval when the component unmounts using clearInterval to prevent memory leaks.
 
 ## PROGRAM
+js
+```
+import React, { useState, useEffect } from "react";
+import "./Carousel.css";
 
+function Carousel() {
 
+const images = [
+"https://picsum.photos/id/1015/600/300",
+"https://picsum.photos/id/1016/600/300",
+"https://picsum.photos/id/1018/600/300",
+"https://picsum.photos/id/1020/600/300"
+];
+
+const [currentIndex, setCurrentIndex] = useState(0);
+
+const nextImage = () => {
+setCurrentIndex((currentIndex + 1) % images.length);
+};
+
+const prevImage = () => {
+setCurrentIndex((currentIndex - 1 + images.length) % images.length);
+};
+
+useEffect(() => {
+const interval = setInterval(() => {
+nextImage();
+}, 3000);
+
+return () => clearInterval(interval);
+
+});
+
+return (
+
+<div className="carousel">
+
+<h2>Image Carousel</h2>
+
+<img src={images[currentIndex]} alt="carousel" />
+
+<div className="buttons">
+
+<button onClick={prevImage}>Previous</button>
+
+<button onClick={nextImage}>Next</button>
+
+</div>
+
+</div>
+
+);
+
+}
+
+export default Carousel;
+```
+
+css
+```
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#f4f4f4;
+font-family:Arial;
+}
+
+.carousel{
+text-align:center;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.carousel img{
+width:600px;
+height:300px;
+object-fit:cover;
+border-radius:8px;
+margin-bottom:15px;
+}
+
+.buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+}
+
+button{
+padding:10px 15px;
+border:none;
+background:#007bff;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0056b3;
+}
+```
 ## OUTPUT
 
+![Carousel Output](images/ImgCar.png)
 
 ## RESULT
 The program for creating Image Carousel using React is executed successfully.
